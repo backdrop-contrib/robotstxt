@@ -7,7 +7,7 @@
 function robotstxt_help($path, $arg) {
   switch ($path) {
     case 'admin/help#robotstxt':
-      return '<p>'. t('In a multisite environment, there is no mechanism for having a separate robots.txt file for each site. This module addresses that need by letting you administer the robots.txt file from the settings interface.') .'</p>';
+      return '<p>' . t('In a multisite environment, there is no mechanism for having a separate robots.txt file for each site. This module addresses that need by letting you administer the robots.txt file from the settings interface.') . '</p>';
       break;
 
     case 'admin/config/search/robotstxt':

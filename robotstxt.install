@@ -2,6 +2,11 @@
 // $Id$
 
 /**
+ * @file
+ * Install, update and uninstall functions for the robotstxt module.
+ */
+
+/**
  * Implements hook_install().
  */
 function robotstxt_install() {
@@ -74,12 +79,23 @@ function robotstxt_update_7000() {
 }
 
 /**
- * #494462: Allow crawling of sites/default/files by search engines, don't disallow it in robots.txt.
+ * #494462: Allow crawling of 'sites' folder by search engines, don't disallow it in robots.txt.
  */
 function robotstxt_update_7100() {
   $robotstxt = variable_get('robotstxt');
   $robotstxt = preg_replace("/Disallow:\s\/sites\/(\r\n?|\n)/", '', $robotstxt);
   variable_set('robotstxt', $robotstxt);
 
-  return t("Allowed crawling of sites/default/files by search engines.");
+  return t("Removed 'sites' folder from crawling exclusion list.");
+}
+
+/**
+ * #905576: Allow crawling of 'contact' folder by search engines, don't disallow it in robots.txt.
+ */
+function robotstxt_update_7101() {
+  $robotstxt = variable_get('robotstxt');
+  $robotstxt = preg_replace("/Disallow:\s\/(\?q=)?contact\/(\r\n?|\n)/", '', $robotstxt);
+  variable_set('robotstxt', $robotstxt);
+
+  return t("Removed 'contact' folder from crawling exclusion list.");
 }
