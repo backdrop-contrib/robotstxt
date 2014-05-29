@@ -10,10 +10,10 @@ function robotstxt_help($path, $arg) {
       break;
 
     case 'admin/config/search/robotstxt':
-      if (file_exists('./robots.txt')) {
+      if (file_exists(DRUPAL_ROOT . '/robots.txt')) {
         drupal_set_message(t('One or more problems have been detected with the RobotsTxt configuration. Check the <a href="@status">status report</a> for more information.', array('@status' => url('admin/reports/status'))), 'warning');
       }
-      return t('See <a href="http://www.robotstxt.org/">http://www.robotstxt.org/</a> for more information concerning how to write your <a href="@robotstxt">robots.txt</a> file.', array('@robotstxt' => base_path() . 'robots.txt'));
+      return t('See <a href="http://www.robotstxt.org/">http://www.robotstxt.org/</a> for more information concerning how to write your <a href="@robotstxt">robots.txt</a> file.', array('@robotstxt' => url('robots.txt')));
       break;
   }
 }
