@@ -49,10 +49,10 @@ A: Yes it can! In the .htaccess file of your Drupal's root directory, add the
 Q: Does this module work together with Drupal Core "Fast 404 pages" feature? 
 A: Yes, but you need to add robots.txt to the 'exclude_paths' of your settings.php.  
    
-   Original:
+   Default Drupal:
    $conf['404_fast_paths_exclude'] = '/\/(?:styles)\//';
 
-   RobotsTxt:
+   Drupal with RobotsTxt module:
    $conf['404_fast_paths_exclude'] = '/\/(?:styles)\/|(?:robots.txt)/';
 
 
