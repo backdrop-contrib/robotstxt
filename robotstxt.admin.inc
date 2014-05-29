@@ -20,5 +20,5 @@ function robotstxt_admin_settings() {
     '#wysiwyg' => FALSE,
   );
 
-  return system_settings_form($form, FALSE);
+  return system_settings_form($form);
 }
