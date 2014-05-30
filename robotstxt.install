@@ -9,12 +9,22 @@
  * Implements hook_install().
  */
 function robotstxt_install() {
-  if (file_exists(DRUPAL_ROOT . '/robots.txt')) {
-    variable_set('robotstxt', file_get_contents(DRUPAL_ROOT . '/robots.txt'));
+  $content = '';
+
+  // List of candidates for import.
+  $files = array(
+    DRUPAL_ROOT . '/robots.txt',
+    drupal_get_path('module', 'robotstxt') . '/robots.txt',
+  );
+
+  foreach ($files as $file) {
+    if (file_exists($file) && is_readable($file)) {
+      $content = file_get_contents($file);
+      break;
+    }
   }
-  elseif (file_exists(drupal_get_path('module', 'robotstxt') . '/robots.txt')) {
-    variable_set('robotstxt', file_get_contents(drupal_get_path('module', 'robotstxt') . '/robots.txt'));
-  }
+
+  variable_set('robotstxt', $content);
 }
 
 /**

@@ -14,7 +14,7 @@ function robotstxt_admin_settings() {
   $form['robotstxt'] = array(
     '#type' => 'textarea',
     '#title' => t('Contents of robots.txt'),
-    '#default_value' => _robotstxt_get_content(),
+    '#default_value' => variable_get('robotstxt', ''),
     '#cols' => 60,
     '#rows' => 20,
     '#wysiwyg' => FALSE,

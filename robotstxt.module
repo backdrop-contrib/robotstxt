@@ -57,7 +57,7 @@ function robotstxt_menu() {
  */
 function robotstxt_robots() {
   $content = array();
-  $content[] = _robotstxt_get_content();
+  $content[] = variable_get('robotstxt', '');
 
   // Hook other modules for adding additional lines.
   if ($additions = module_invoke_all('robotstxt')) {
@@ -71,27 +71,4 @@ function robotstxt_robots() {
   drupal_add_http_header('Content-type', 'text/plain');
   echo implode("\n", $content);
   drupal_exit();
-}
-
-/**
- * Retrieve contents of robots.txt from the database variable, site root, or
- * module directory.
- */
-function _robotstxt_get_content() {
-  $content = variable_get('robotstxt', FALSE);
-
-  if ($content === FALSE) {
-    $files = array(
-      DRUPAL_ROOT . '/robots.txt',
-      drupal_get_path('module', 'robotstxt') . '/robots.txt',
-    );
-    foreach ($files as $file) {
-      if (file_exists($file) && is_readable($file)) {
-        $content = file_get_contents($file);
-        break;
-      }
-    }
-  }
-
-  return $content;
 }
