@@ -70,5 +70,5 @@ function robotstxt_robots() {
 
   drupal_add_http_header('Content-type', 'text/plain');
   echo implode("\n", $content);
-  drupal_exit();
+  drupal_page_footer();
 }
