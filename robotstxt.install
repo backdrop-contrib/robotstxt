@@ -120,7 +120,7 @@ function robotstxt_update_7102() {
   $robotstxt = preg_replace("/Disallow:\s\/\?q=comment\/reply\/(\r\n?|\n)Disallow:\s\/\?q=node\/add\/(\r\n?|\n)/", "Disallow: /?q=comment/reply/\nDisallow: /?q=filter/tips/\nDisallow: /?q=node/add/\n", $robotstxt);
   variable_set('robotstxt', $robotstxt);
 
-  return t('Added INSTALL.sqlite.txt and /filter/tips/ exclusions.');
+  return t("Added 'INSTALL.sqlite.txt' and '/filter/tips/' exclusions.");
 }
 
 /**
