@@ -108,3 +108,29 @@ function robotstxt_update_7101() {
 
   return t("Removed 'contact' folder from crawling exclusion list.");
 }
+
+/**
+ * Add 3 missing exclusions introduced by latest robots.txt update.
+ */
+function robotstxt_update_7102() {
+
+  $robotstxt = variable_get('robotstxt');
+  $robotstxt = preg_replace("/Disallow:\s\/INSTALL.pgsql.txt(\r\n?|\n)Disallow:\s\/install.php(\r\n?|\n)/", "Disallow: /INSTALL.pgsql.txt\nDisallow: /INSTALL.sqlite.txt\nDisallow: /install.php\n", $robotstxt);
+  $robotstxt = preg_replace("/Disallow:\s\/comment\/reply\/(\r\n?|\n)Disallow:\s\/node\/add\/(\r\n?|\n)/", "Disallow: /comment/reply/\nDisallow: /filter/tips/\nDisallow: /node/add/\n", $robotstxt);
+  $robotstxt = preg_replace("/Disallow:\s\/\?q=comment\/reply\/(\r\n?|\n)Disallow:\s\/\?q=node\/add\/(\r\n?|\n)/", "Disallow: /?q=comment/reply/\nDisallow: /?q=filter/tips/\nDisallow: /?q=node/add/\n", $robotstxt);
+  variable_set('robotstxt', $robotstxt);
+
+  return t('Added INSTALL.sqlite.txt and /filter/tips/ exclusions.');
+}
+
+/**
+ * Update robots.txt syntax checking link.
+ */
+function robotstxt_update_7103() {
+
+  $robotstxt = variable_get('robotstxt');
+  $robotstxt = str_replace('http://www.sxw.org.uk/computing/robots/check.html', 'http://www.frobee.com/robots-txt-check', $robotstxt);
+  variable_set('robotstxt', $robotstxt);
+
+  return t('Updated syntax changing links.');
+}
