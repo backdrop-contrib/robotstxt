@@ -69,7 +69,7 @@ function robotstxt_robots() {
   $content = array_filter($content);
 
   drupal_add_http_header('Content-type', 'text/plain');
-  drupal_set_page_content(implode("\n", $content));
+  echo implode("\n", $content);
   drupal_page_footer();
   exit;
 }
