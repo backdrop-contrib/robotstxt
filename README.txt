@@ -55,6 +55,13 @@ A: Yes, but you need to add robots.txt to the 'exclude_paths' of your settings.p
    Drupal with RobotsTxt module:
    $conf['404_fast_paths_exclude'] = '/\/(?:styles)\/|(?:robots.txt)/';
 
+Q: How can I install the module with custom default robots.txt?
+A: The module allows adding a default.robots.txt to the defaults folder.
+
+   1. Remove the robots.txt from site root.
+   2. Save your custom robots.txt to "/sites/default/default.robots.txt"
+   3. Run the module installation.
+
 
 KNOWN ISSUES
 ------------
