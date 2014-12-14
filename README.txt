@@ -39,15 +39,15 @@ FREQUENTLY ASKED QUESTIONS
 --------------------------
 
 Q: Can this module work if I have clean URLs disabled?
-A: Yes it can! In the .htaccess file of your Drupal's root directory, add the 
+A: Yes it can! In the .htaccess file of your Drupal's root directory, add the
    following two lines to the mod_rewrite section, immediately after the line
    that says "RewriteEngine on":
 
    # Add redirection for the robots.txt path for use with the RobotsTxt module.
    RewriteRule ^(robots.txt)$ index.php?q=$1
 
-Q: Does this module work together with Drupal Core "Fast 404 pages" feature? 
-A: Yes, but you need to add robots.txt to the 'exclude_paths' of your settings.php.  
+Q: Does this module work together with Drupal Core "Fast 404 pages" feature?
+A: Yes, but you need to add robots.txt to the 'exclude_paths' of your settings.php.
    
    Drupal (default):
    $conf['404_fast_paths_exclude'] = '/\/(?:styles)\//';
