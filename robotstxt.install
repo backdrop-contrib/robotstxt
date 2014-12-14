@@ -135,3 +135,15 @@ function robotstxt_update_7103() {
 
   return t('Updated syntax checking link.');
 }
+
+/**
+ * Update robots.txt link.
+ */
+function robotstxt_update_7104() {
+
+  $robotstxt = variable_get('robotstxt');
+  $robotstxt = str_replace('http://www.robotstxt.org/wc/robots.html', 'http://www.robotstxt.org/robotstxt.html', $robotstxt);
+  variable_set('robotstxt', $robotstxt);
+
+  return t('Updated robotstxt.org link.');
+}
