@@ -4,4 +4,5 @@ core = 7.x
 files[] = robotstxt.module
 files[] = robotstxt.admin.inc
 files[] = robotstxt.install
+files[] = robotstxt.test
 configure = admin/config/search/robotstxt
