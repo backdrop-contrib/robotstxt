@@ -1,5 +1,0 @@
-name = "Robotstxt module tests"
-description = "Support module for robotstxt module testing."
-package = Testing
-core = 7.x
-hidden = TRUE

@@ -13,9 +13,9 @@ function robotstxt_install() {
 
   // List of candidates for import.
   $files = array(
-    DRUPAL_ROOT . '/robots.txt',
-    DRUPAL_ROOT . '/sites/default/default.robots.txt',
-    drupal_get_path('module', 'robotstxt') . '/robots.txt',
+    BACKDROP_ROOT . '/robots.txt',
+    BACKDROP_ROOT . '/sites/default/default.robots.txt',
+    backdrop_get_path('module', 'robotstxt') . '/robots.txt',
   );
 
   foreach ($files as $file) {
@@ -25,14 +25,7 @@ function robotstxt_install() {
     }
   }
 
-  variable_set('robotstxt', $content);
-}
-
-/**
- * Implements hook_uninstall().
- */
-function robotstxt_uninstall() {
-  variable_del('robotstxt');
+  config_set('robotstxt.settings', 'robotstxt', $content);
 }
 
 /**
@@ -45,7 +38,7 @@ function robotstxt_requirements($phase) {
   switch ($phase) {
     case 'runtime' :
       // Module cannot work without Clean URLs.
-      if (!variable_get('clean_url', 0)) {
+      if (!config_get('system.core', 'clean_url')) {
         $requirements['robotstxt_cleanurl'] = array(
           'title' => $t('RobotsTxt'),
           'severity' => REQUIREMENT_ERROR,
@@ -54,7 +47,7 @@ function robotstxt_requirements($phase) {
       }
 
       // Webservers prefer the robots.txt file on disk and does not allow menu path overwrite.
-      if (file_exists(DRUPAL_ROOT . '/robots.txt')) {
+      if (file_exists(BACKDROP_ROOT . '/robots.txt')) {
         $requirements['robotstxt_file'] = array(
           'title' => $t('RobotsTxt'),
           'severity' => REQUIREMENT_WARNING,
@@ -65,85 +58,6 @@ function robotstxt_requirements($phase) {
   return $requirements;
 }
 
-/**
- * Automatically add the 'administer robots.txt' permission to granted users.
- */
-function robotstxt_update_6100() {
-  $roles = user_roles(FALSE, 'administer site configuration');
-  foreach ($roles as $rid => $role) {
-    _update_7000_user_role_grant_permissions($rid, array('administer robots.txt'), 'robotstxt');
-  }
-  return t("Added 'administer robots.txt' permission to all roles with 'administer site configuration' permission.");
-}
-
-/**
- * #337820: Rename menu path 'logout' to 'user/logout' for consistency.
- */
-function robotstxt_update_7000() {
-  $robotstxt = variable_get('robotstxt');
-  $robotstxt = str_replace('Disallow: /logout/', 'Disallow: /user/logout/', $robotstxt);
-  $robotstxt = str_replace('Disallow: /?q=logout/', 'Disallow: /?q=user/logout/', $robotstxt);
-  variable_set('robotstxt', $robotstxt);
-
-  return t("Renamed menu path 'logout' to 'user/logout'.");
-}
-
-/**
- * #494462: Allow crawling of 'sites' folder by search engines, don't disallow it in robots.txt.
- */
-function robotstxt_update_7100() {
-  $robotstxt = variable_get('robotstxt');
-  $robotstxt = preg_replace("/Disallow:\s\/sites\/(\r\n?|\n)/", '', $robotstxt);
-  variable_set('robotstxt', $robotstxt);
-
-  return t("Removed 'sites' folder from crawling exclusion list.");
-}
-
-/**
- * #905576: Allow crawling of 'contact' folder by search engines, don't disallow it in robots.txt.
- */
-function robotstxt_update_7101() {
-  $robotstxt = variable_get('robotstxt');
-  $robotstxt = preg_replace("/Disallow:\s\/(\?q=)?contact\/(\r\n?|\n)/", '', $robotstxt);
-  variable_set('robotstxt', $robotstxt);
-
-  return t("Removed 'contact' folder from crawling exclusion list.");
-}
-
-/**
- * Add 3 missing exclusions introduced by latest robots.txt update.
- */
-function robotstxt_update_7102() {
-
-  $robotstxt = variable_get('robotstxt');
-  $robotstxt = preg_replace("/Disallow:\s\/INSTALL.pgsql.txt(\r\n?|\n)Disallow:\s\/install.php(\r\n?|\n)/", "Disallow: /INSTALL.pgsql.txt\nDisallow: /INSTALL.sqlite.txt\nDisallow: /install.php\n", $robotstxt);
-  $robotstxt = preg_replace("/Disallow:\s\/comment\/reply\/(\r\n?|\n)Disallow:\s\/node\/add\/(\r\n?|\n)/", "Disallow: /comment/reply/\nDisallow: /filter/tips/\nDisallow: /node/add/\n", $robotstxt);
-  $robotstxt = preg_replace("/Disallow:\s\/\?q=comment\/reply\/(\r\n?|\n)Disallow:\s\/\?q=node\/add\/(\r\n?|\n)/", "Disallow: /?q=comment/reply/\nDisallow: /?q=filter/tips/\nDisallow: /?q=node/add/\n", $robotstxt);
-  variable_set('robotstxt', $robotstxt);
-
-  return t("Added 'INSTALL.sqlite.txt' and '/filter/tips/' exclusions.");
-}
-
-/**
- * Update robots.txt syntax checking link.
- */
-function robotstxt_update_7103() {
-
-  $robotstxt = variable_get('robotstxt');
-  $robotstxt = str_replace('http://www.sxw.org.uk/computing/robots/check.html', 'http://www.frobee.com/robots-txt-check', $robotstxt);
-  variable_set('robotstxt', $robotstxt);
-
-  return t('Updated syntax checking link.');
-}
-
-/**
- * Update robots.txt link.
- */
-function robotstxt_update_7104() {
-
-  $robotstxt = variable_get('robotstxt');
-  $robotstxt = str_replace('http://www.robotstxt.org/wc/robots.html', 'http://www.robotstxt.org/robotstxt.html', $robotstxt);
-  variable_set('robotstxt', $robotstxt);
-
-  return t('Updated robotstxt.org link.');
+function robotstxt_update_last_removed() {
+  return 7104;
 }
