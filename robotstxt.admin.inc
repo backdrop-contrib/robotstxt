@@ -36,4 +36,6 @@ function robotstxt_admin_settings_submit($form, &$form_state) {
   config('robotstxt.settings')
     ->set('robotstxt', $form_state['values']['robotstxt'])
     ->save();
+
+  watchdog('robotstxt', 'robots.txt modified.', array(), WATCHDOG_INFO);
 }
