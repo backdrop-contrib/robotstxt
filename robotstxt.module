@@ -42,6 +42,8 @@ function robotstxt_menu() {
  * Show the robots.txt file.
  */
 function robotstxt_robots() {
+  watchdog('robotstxt', 'robots.txt requested by ' . getenv('HTTP_USER_AGENT'), NULL, WATCHDOG_DEBUG);
+
   $content = array();
   $content[] = config_get('robotstxt.settings', 'robotstxt');
 
