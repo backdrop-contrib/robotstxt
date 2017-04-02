@@ -8,7 +8,7 @@
 /**
  * Add additional lines to the site's robots.txt file.
  *
- * @return array
+ * @return string
  *   An array of strings to add to the robots.txt.
  */
 function hook_robotstxt() {
