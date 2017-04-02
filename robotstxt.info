@@ -1,8 +1,5 @@
 name = robots.txt
 description = "Generates the robots.txt file dynamically and gives you the chance to edit it, on a per-site basis, from the web UI."
 core = 7.x
-files[] = robotstxt.module
-files[] = robotstxt.admin.inc
-files[] = robotstxt.install
 files[] = robotstxt.test
 configure = admin/config/search/robotstxt
