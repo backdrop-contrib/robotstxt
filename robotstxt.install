@@ -81,7 +81,7 @@ function robotstxt_update_6100() {
  * Rename menu path 'logout' to 'user/logout' for consistency.
  */
 function robotstxt_update_7000() {
-  //  Case #337820.
+  // Case #337820.
   $robotstxt = variable_get('robotstxt');
   $robotstxt = str_replace('Disallow: /logout/', 'Disallow: /user/logout/', $robotstxt);
   $robotstxt = str_replace('Disallow: /?q=logout/', 'Disallow: /?q=user/logout/', $robotstxt);
@@ -94,7 +94,7 @@ function robotstxt_update_7000() {
  * Allow crawling of 'sites' folder by search engines, don't disallow it.
  */
 function robotstxt_update_7100() {
-  //  Case #494462.
+  // Case #494462.
   $robotstxt = variable_get('robotstxt');
   $robotstxt = preg_replace("/Disallow:\s\/sites\/(\r\n?|\n)/", '', $robotstxt);
   variable_set('robotstxt', $robotstxt);
@@ -106,7 +106,7 @@ function robotstxt_update_7100() {
  * Allow crawling of 'contact' folder by search engines, don't disallow it.
  */
 function robotstxt_update_7101() {
-  //  Case #905576.
+  // Case #905576.
   $robotstxt = variable_get('robotstxt');
   $robotstxt = preg_replace("/Disallow:\s\/(\?q=)?contact\/(\r\n?|\n)/", '', $robotstxt);
   variable_set('robotstxt', $robotstxt);

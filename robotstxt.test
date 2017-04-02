@@ -4,8 +4,17 @@
  * @file
  * Tests for robotstxt.module.
  */
+
+/**
+ * Tests basic functionality of configured robots.txt files.
+ *
+ * @group Robots.txt
+ */
 class RobotsTxtBasicTestCase extends DrupalWebTestCase {
 
+  /**
+   * {@inheritdoc}
+   */
   public static function getInfo() {
     return array(
       'name' => 'Robots.txt functionality',
@@ -15,11 +24,12 @@ class RobotsTxtBasicTestCase extends DrupalWebTestCase {
   }
 
   /**
-   * The robotstxt_test module defines a second menu route for testing
-   * because we cannot guarantee that the static robots.txt file is removed
-   * from the docroot.
+   * {@inheritdoc}
    */
   protected function setUp() {
+    // The robotstxt_test module defines a second menu route for testing
+    // because we cannot guarantee that the static robots.txt file is removed
+    // from the docroot.
     parent::setUp('robotstxt', 'robotstxt_test');
   }
 
