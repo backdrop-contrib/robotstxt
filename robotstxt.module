@@ -7,15 +7,14 @@ function robotstxt_help($path, $arg) {
   switch ($path) {
     case 'admin/help#robotstxt':
       return '<p>' . t('In a multisite environment, there is no mechanism for having a separate robots.txt file for each site. This module addresses that need by letting you administer the robots.txt file from the settings interface.') . '</p>';
-      break;
 
     case 'admin/config/search/robotstxt':
       if (file_exists(DRUPAL_ROOT . '/robots.txt')) {
         drupal_set_message(t('One or more problems have been detected with the RobotsTxt configuration. Check the <a href="@status">status report</a> for more information.', array('@status' => url('admin/reports/status'))), 'warning');
       }
-      // Use base_path() or we may get an URL like "/en/robots.txt" and "/de/robots.txt" on sites with URL language negotiation.
+      // Use base_path() or we may get an URL like "/en/robots.txt" and
+      // "/de/robots.txt" on sites with URL language negotiation.
       return t('See <a href="http://www.robotstxt.org/">http://www.robotstxt.org/</a> for more information concerning how to write your <a href="@robotstxt">robots.txt</a> file.', array('@robotstxt' => base_path() . 'robots.txt'));
-      break;
   }
 }
 

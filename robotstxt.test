@@ -4,7 +4,6 @@
  * @file
  * Tests for robotstxt.module.
  */
-
 class RobotsTxtBasicTestCase extends DrupalWebTestCase {
 
   public static function getInfo() {
@@ -20,7 +19,7 @@ class RobotsTxtBasicTestCase extends DrupalWebTestCase {
    * because we cannot guarantee that the static robots.txt file is removed
    * from the docroot.
    */
-  function setUp() {
+  protected function setUp() {
     parent::setUp('robotstxt', 'robotstxt_test');
   }
 
@@ -87,7 +86,7 @@ class RobotsTxtBasicTestCase extends DrupalWebTestCase {
   /**
    * Test robots.txt file encoding with caching and compression.
    */
-  function testRobotsTxtCachingAndCompressionTestCase() {
+  public function testRobotsTxtCachingAndCompressionTestCase() {
     // Create an admin user, log in and access settings form.
     $admin_user = $this->drupalCreateUser(array('administer site configuration', 'administer robots.txt'));
     $this->drupalLogin($admin_user);
@@ -101,9 +100,10 @@ class RobotsTxtBasicTestCase extends DrupalWebTestCase {
     $this->drupalPost('admin/config/development/performance', $edit, t('Save configuration'));
 
     $this->drupalLogout();
-    $url = url('robots-test.txt', array('absolute' => true));
+    $url = url('robots-test.txt', array('absolute' => TRUE));
 
-    // Use drupal_http_request so gzipped response is not automatically uncompressed.
+    // Use drupal_http_request so gzipped response is not automatically
+    // uncompressed.
     $response = drupal_http_request($url, array('headers' => array('Accept-encoding' => 'gzip')));
     $this->assertEqual(trim(variable_get('robotstxt', '')), trim(gzinflate(substr($response->data, 10, -8))), 'The robots.txt content is properly served with compression enabled.');
 
@@ -111,4 +111,5 @@ class RobotsTxtBasicTestCase extends DrupalWebTestCase {
     $header = $response->headers['content-type'];
     $this->assertIdentical(strpos($header, 'text/plain'), 0, 'The robots.txt file was served with header Content-Type: text/plain');
   }
+
 }
