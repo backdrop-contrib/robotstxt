@@ -36,7 +36,7 @@ The module allows adding a default.robots.txt to the defaults folder.
 Current Maintainer
 ------------------
 
-- David Norman (https://github.com/deekayen)
+- None
 
 Credits
 -------
