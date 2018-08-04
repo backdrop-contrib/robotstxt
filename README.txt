@@ -12,8 +12,8 @@ CONTENTS OF THIS FILE
 INTRODUCTION
 ------------
 
-Maintainer: hass <http://drupal.org/user/85918>
-Project Page: http://drupal.org/project/robotstxt
+Maintainer: hass <https://drupal.org/user/85918>
+Project Page: https://drupal.org/project/robotstxt
 
 Use this module when you are running multiple Drupal sites from a single code
 base (multisite) and you need a different robots.txt file for each one. This
@@ -27,7 +27,7 @@ implementing hook_robotstxt(). See robotstxt.api.php for more documentation.
 INSTALLATION
 ------------
 
-See http://drupal.org/getting-started/install-contrib for instructions on
+See https://drupal.org/getting-started/install-contrib for instructions on
 how to install or update Drupal modules.
 
 Once you have the RobotsTxt modules installed, make sure to delete or rename
@@ -70,11 +70,11 @@ KNOWN ISSUES
 There are no known issues at this time.
 
 To report new bug reports, feature requests, and support requests, visit
-http://drupal.org/project/issues/robotstxt.
+https://drupal.org/project/issues/robotstxt.
 
 
 HOW CAN YOU CONTRIBUTE?
 ---------------------
 
 - Report any bugs, feature requests, etc. in the issue tracker.
-  http://drupal.org/project/issues/robotstxt
+  https://drupal.org/project/issues/robotstxt
