@@ -1,0 +1,5 @@
+[RobotsTxtBasicTestCase]
+name = Robots.txt functionality
+description = Tests basic functionality of configured robots.txt files.
+group = Robots.txt
+file = robotstxt.test
