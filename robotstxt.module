@@ -71,5 +71,5 @@ function robotstxt_robots() {
   backdrop_add_http_header('Content-type', 'text/plain');
   echo implode("\n", $content);
   backdrop_page_footer();
-  exit;
+  backdrop_exit();
 }
