@@ -36,7 +36,7 @@ function robotstxt_requirements($phase) {
   $t = get_t();
 
   switch ($phase) {
-    case 'runtime' :
+    case 'runtime':
       // Module cannot work without Clean URLs.
       if (!config_get('system.core', 'clean_url')) {
         $requirements['robotstxt_cleanurl'] = array(
@@ -46,7 +46,8 @@ function robotstxt_requirements($phase) {
         );
       }
 
-      // Webservers prefer the robots.txt file on disk and does not allow menu path overwrite.
+      // Webservers prefer the robots.txt file on disk and does not allow menu
+      // path overwrite.
       if (file_exists(BACKDROP_ROOT . '/robots.txt')) {
         $requirements['robotstxt_file'] = array(
           'title' => $t('RobotsTxt'),

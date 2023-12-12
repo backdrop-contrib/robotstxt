@@ -12,7 +12,7 @@ function robotstxt_config_info() {
   $prefixes = array();
   $prefixes['robotstxt.settings'] = array(
     'group' => t('Configuration'),
-    'label' => t('Robotstxt settings'),
+    'label' => t('RobotsTxt settings'),
   );
   return $prefixes;
 }

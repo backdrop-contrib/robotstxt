@@ -1,6 +1,7 @@
-name = robots.txt
+name = RobotsTxt
 description = "Generates the robots.txt file dynamically and gives you the chance to edit it, on a per-site basis, from the web UI."
 backdrop = 1.x
-configure = admin/config/search/robotstxt
 type = module
 package = Search
+
+configure = admin/config/search/robotstxt
