@@ -1,0 +1,6 @@
+name = "Robotstxt module tests"
+description = "Support module for robotstxt module testing."
+package = Testing
+backdrop = 1.x
+type = module
+hidden = TRUE
